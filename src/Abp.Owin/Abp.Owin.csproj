@@ -17,6 +17,7 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Description>Abp.Owin</Description>
+	  <NoWarn>$(NoWarn);NU1504;NU1505;NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

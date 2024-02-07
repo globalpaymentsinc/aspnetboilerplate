@@ -14,6 +14,7 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <RootNamespace>Abp</RootNamespace>
     <Description>Abp.Zero.Common</Description>
+	  <NoWarn>$(NoWarn);NU1504;NU1505;NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

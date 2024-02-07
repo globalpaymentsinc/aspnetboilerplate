@@ -15,6 +15,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <RootNamespace>Abp.EntityFramework</RootNamespace>
     <Description>Abp.EntityFramework.Common</Description>
+	  <NoWarn>$(NoWarn);NU1504;NU1505;NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

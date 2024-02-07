@@ -20,6 +20,7 @@
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <RootNamespace>Abp</RootNamespace>
     <Description>Abp.Web.Api.OData</Description>
+	  <NoWarn>$(NoWarn);NU1504;NU1505;NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

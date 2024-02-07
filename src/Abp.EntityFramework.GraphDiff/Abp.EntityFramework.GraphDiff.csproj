@@ -16,6 +16,7 @@
     <RootNamespace>Abp.EntityFramework</RootNamespace>
     <Description>Abp.EntityFramework.GraphDiff</Description>
     <UserSecretsId>9c1c3adb-b823-4583-9c4f-bd57476d8015</UserSecretsId>
+	  <NoWarn>$(NoWarn);NU1504;NU1505;NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

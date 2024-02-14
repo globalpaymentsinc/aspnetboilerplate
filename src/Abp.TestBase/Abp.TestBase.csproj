@@ -20,6 +20,10 @@
     <Description>Abp.TestBase</Description>
 	  <NoWarn>$(NoWarn);NU1504;NU1505;NU1701</NoWarn>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier2022" Version="2.9.9" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Abp\Abp.csproj" />

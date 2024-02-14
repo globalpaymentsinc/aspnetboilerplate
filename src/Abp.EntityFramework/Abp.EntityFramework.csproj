@@ -23,6 +23,7 @@
     <ProjectReference Include="..\Abp.EntityFramework.Common\Abp.EntityFramework.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier2022" Version="2.9.9" />
     <PackageReference Include="EntityFramework.DynamicFilters" Version="3.2.4" />
     <PackageReference Update="ConfigureAwait.Fody" Version="3.3.2" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />

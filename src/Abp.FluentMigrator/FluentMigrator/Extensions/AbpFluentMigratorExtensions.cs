@@ -118,5 +118,7 @@ namespace Abp.FluentMigrator.Extensions
             return table
                 .AddColumn("IsActive").AsBoolean().NotNullable().WithDefaultValue(defaultValue);
         }
+
+
     }
 }

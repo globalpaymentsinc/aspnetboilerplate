@@ -1,4 +1,4 @@
-﻿using System.Data;
+﻿using System.Data.Common;
 using System.Threading.Tasks;
 using Abp.Dapper.Filters.Action;
 using Abp.Dapper.Filters.Query;
@@ -6,15 +6,15 @@ using Abp.Events.Bus.Entities;
 
 namespace Abp.Dapper.Repositories
 {
-    public interface IDapperRepository
+    public interface IDapperConnectionProvider<TDbContext> where TDbContext : System.Data.Entity.DbContext
     {
-        IDbConnection Connection { get; }
+        DbConnection Connection { get; }
 
-        Task<IDbConnection> GetConnectionAsync();
+        Task<DbConnection> GetConnectionAsync();
 
-        IDbTransaction ActiveTransaction { get; }
+        DbTransaction ActiveTransaction { get; }
 
-        Task<IDbTransaction> GetActiveTransactionAsync();
+        Task<DbTransaction> GetActiveTransactionAsync();
 
         IDapperQueryFilterExecuter DapperQueryFilterExecuter { get; set; }
 

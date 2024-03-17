@@ -1,4 +1,5 @@
-﻿using Abp.Dependency;
+﻿using Abp.Dapper.Repositories;
+using Abp.Dependency;
 using Abp.Modules;
 using Abp.Orm;
 using Abp.Reflection.Extensions;

@@ -1,23 +1,23 @@
+﻿using Abp.Dapper.Filters.Action;
+using Abp.Dapper.Filters.Query;
+using Abp.Data;
+using Abp.Domain.Entities;
+using Abp.Events.Bus.Entities;
+using DapperExtensions;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Common;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Abp.Dapper.Extensions;
-using Abp.Dapper.Filters.Action;
-using Abp.Dapper.Filters.Query;
-using Abp.Data;
-using Abp.Domain.Entities;
 using Abp.Domain.Uow;
-using Abp.Events.Bus.Entities;
 using Dapper;
-using DapperExtensions;
 
 namespace Abp.Dapper.Repositories
 {
-    public class DapperRepositoryBase<TEntity, TPrimaryKey> : AbpDapperRepositoryBase<TEntity, TPrimaryKey>
+    public class DapperRepositoryBase<TDbContext, TEntity, TPrimaryKey> : AbpDapperRepositoryBase<TEntity, TPrimaryKey>
         where TEntity : class, IEntity<TPrimaryKey>
     {
         private readonly IActiveTransactionProvider _activeTransactionProvider;
@@ -31,6 +31,13 @@ namespace Abp.Dapper.Repositories
             DapperActionFilterExecuter = NullDapperActionFilterExecuter.Instance;
         }
 
+        private static ActiveTransactionProviderArgs ActiveTransactionProviderArgs =>
+            new ActiveTransactionProviderArgs
+            {
+                ["ContextType"] = typeof(TDbContext),
+                ["MultiTenancySide"] = MultiTenancySide
+            };
+
         public IDapperQueryFilterExecuter DapperQueryFilterExecuter { get; set; }
 
         public IEntityChangeEventHelper EntityChangeEventHelper { get; set; }
@@ -39,13 +46,13 @@ namespace Abp.Dapper.Repositories
 
         public virtual DbConnection GetConnection()
         {
-            var connection = _activeTransactionProvider.GetActiveConnection(ActiveTransactionProviderArgs.Empty);
+            var connection = _activeTransactionProvider.GetActiveConnection(ActiveTransactionProviderArgs);
             return (DbConnection)connection;
         }
 
         public virtual async Task<DbConnection> GetConnectionAsync()
         {
-            var connection = await _activeTransactionProvider.GetActiveConnectionAsync(ActiveTransactionProviderArgs.Empty);
+            var connection = await _activeTransactionProvider.GetActiveConnectionAsync(ActiveTransactionProviderArgs);
             return (DbConnection)connection;
         }
 
@@ -59,13 +66,13 @@ namespace Abp.Dapper.Repositories
         public virtual async Task<DbTransaction> GetActiveTransactionAsync()
         {
             var connection =
-                await _activeTransactionProvider.GetActiveTransactionAsync(ActiveTransactionProviderArgs.Empty);
+                await _activeTransactionProvider.GetActiveTransactionAsync(ActiveTransactionProviderArgs);
             return (DbTransaction) connection;
         }
 
         public virtual DbTransaction GetActiveTransaction()
         {
-            var connection = _activeTransactionProvider.GetActiveTransaction(ActiveTransactionProviderArgs.Empty);
+            var connection = _activeTransactionProvider.GetActiveTransaction(ActiveTransactionProviderArgs);
             return (DbTransaction) connection;
         }
 
@@ -253,5 +260,4 @@ namespace Abp.Dapper.Repositories
             return primaryKey;
         }
     }
-
 }

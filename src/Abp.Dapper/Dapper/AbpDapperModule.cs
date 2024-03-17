@@ -8,6 +8,7 @@ namespace Abp.Dapper
     [DependsOn(typeof(AbpKernelModule))]
     public class AbpDapperModule : AbpModule
     {
+
         public override void PreInitialize()
         {
             Configuration.UnitOfWork.IsTransactionScopeAvailable = false;
@@ -40,5 +41,6 @@ namespace Abp.Dapper
                 }
             }
         }
+
     }
 }

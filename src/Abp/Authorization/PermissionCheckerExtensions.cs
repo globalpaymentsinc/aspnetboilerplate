@@ -13,6 +13,7 @@ namespace Abp.Authorization
     /// </summary>
     public static class PermissionCheckerExtensions
     {
+
         /// <summary>
         /// Checks if given user is granted for given permission.
         /// </summary>
@@ -217,6 +218,18 @@ namespace Abp.Authorization
 
             var localizedPermissionNames = LocalizePermissionNames(permissionChecker, permissionNames);
 
+            var names = new string[permissionNames.Length];
+
+            for (var i = 0; i < permissionNames.Length; i++)
+            {
+                if (permissionNames[i].Equals(localizedPermissionNames[i]))
+                {
+                    names[i] = permissionNames[i];
+                    continue;
+                }
+                names[i] = $"{permissionNames[i]}:{localizedPermissionNames[i]}" ;
+            }
+
             if (requireAll)
             {
                 throw new AbpAuthorizationException(
@@ -226,11 +239,11 @@ namespace Abp.Authorization
                             "AllOfThesePermissionsMustBeGranted",
                             "Required permissions are not granted. All of these permissions must be granted: {0}"
                         ),
-                        string.Join(", ", localizedPermissionNames)
+                        string.Join(", ", names)
                     )
                 );
             }
-            else
+            
             {
                 throw new AbpAuthorizationException(
                     string.Format(
@@ -258,12 +271,25 @@ namespace Abp.Authorization
         /// <exception cref="AbpAuthorizationException">Throws authorization exception if</exception>
         public static void Authorize(this IPermissionChecker permissionChecker, bool requireAll, params string[] permissionNames)
         {
+
             if (IsGranted(permissionChecker, requireAll, permissionNames))
             {
                 return;
             }
 
             var localizedPermissionNames = LocalizePermissionNames(permissionChecker, permissionNames);
+
+            var names = new string[permissionNames.Length];
+
+            for (var i = 0; i < permissionNames.Length; i++)
+            {
+                if (permissionNames[i].Equals(localizedPermissionNames[i]))
+                {
+                    names[i] = permissionNames[i];
+                    continue;
+                }
+                names[i] = $"{permissionNames[i]}:{localizedPermissionNames[i]}" ;
+            }
 
             if (requireAll)
             {
@@ -274,11 +300,11 @@ namespace Abp.Authorization
                             "AllOfThesePermissionsMustBeGranted",
                             "Required permissions are not granted. All of these permissions must be granted: {0}"
                         ),
-                        string.Join(", ", localizedPermissionNames)
+                        string.Join(", ", names)
                     )
                 );
             }
-            else
+            
             {
                 throw new AbpAuthorizationException(
                     string.Format(
@@ -287,7 +313,7 @@ namespace Abp.Authorization
                             "AtLeastOneOfThesePermissionsMustBeGranted",
                             "Required permissions are not granted. At least one of these permissions must be granted: {0}"
                         ),
-                        string.Join(", ", localizedPermissionNames)
+                        string.Join(", ", names)
                     )
                 );
             }

@@ -80,6 +80,8 @@ namespace Abp.Json
                 var options = new JsonSerializerOptions
                 {
                     ReadCommentHandling = JsonCommentHandling.Skip,
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    MaxDepth = 8,
                     AllowTrailingCommas = true
                 };
 

@@ -5,6 +5,7 @@ using Abp.Dependency;
 using Abp.Domain.Uow;
 using Abp.Events.Bus;
 using Abp.Events.Bus.Exceptions;
+using Abp.Extensions;
 using Abp.Json;
 using Abp.Threading.BackgroundWorkers;
 using Abp.Threading.Timers;
@@ -191,7 +192,7 @@ namespace Abp.BackgroundJobs
                     }
                     catch (Exception ex)
                     {
-                        Logger.Warn(ex.Message, ex);
+                        Logger.Error(ex);
 
                         var nextTryTime = jobInfo.CalculateNextTryTime();
                         if (nextTryTime.HasValue)
@@ -223,7 +224,7 @@ namespace Abp.BackgroundJobs
             }
             catch (Exception ex)
             {
-                Logger.Warn(ex.ToString(), ex);
+                Logger.Error(ex);
 
                 jobInfo.IsAbandoned = true;
 

@@ -4,6 +4,7 @@ using Abp.EntityHistory;
 using Abp.Runtime;
 using JetBrains.Annotations;
 using System.Web;
+using System.Security.Policy;
 
 namespace Abp.Web.EntityHistory
 {
@@ -24,7 +25,7 @@ namespace Abp.Web.EntityHistory
 
                 try
                 {
-                    return HttpContext.Current?.Request.Url.AbsoluteUri;
+                    return Uri.TryCreate(HttpContext.Current?.Request.Url.AbsoluteUri, UriKind.Absolute, out var uri) ? uri.ToString() : null;
                 }
                 catch (HttpException)
                 {

@@ -31,8 +31,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.0.2" />
     <PackageReference Include="System.Runtime" Version="4.3.1" />
     <PackageReference Include="MailKit" Version="4.4.0" />
+    <PackageReference Include="System.Text.Json" Version="9.0.2" />
     <PackageReference Update="ConfigureAwait.Fody" Version="3.3.2" />
   </ItemGroup>
 

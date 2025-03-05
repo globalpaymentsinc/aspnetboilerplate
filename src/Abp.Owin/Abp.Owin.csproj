@@ -30,6 +30,8 @@
     <PackageReference Include="Owin" Version="1.0.0" />
     <PackageReference Include="Microsoft.Owin" Version="4.2.2" />
     <PackageReference Include="Microsoft.Owin.StaticFiles" Version="4.2.2" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.0.2" />
+    <PackageReference Include="System.Text.Json" Version="9.0.2" />
     <PackageReference Update="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
     <PackageReference Update="ConfigureAwait.Fody" Version="3.3.2" />
   </ItemGroup>

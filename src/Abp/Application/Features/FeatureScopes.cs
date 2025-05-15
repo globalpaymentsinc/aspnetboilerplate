@@ -26,7 +26,11 @@ namespace Abp.Application.Features
         /// <summary>
         /// This Feature<see cref="Feature"/> can be enabled/disabled per District.
         /// </summary>
-        District = 4
+        District = 4,
 
+        /// <summary>
+        /// This Feature<see cref="Feature"/> can be enabled/disabled for the system.
+        /// </summary>
+        System = 5
     }
 }

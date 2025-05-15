@@ -5,6 +5,8 @@ using System.Linq;
 using Abp.Collections.Extensions;
 using Abp.Localization;
 using Abp.UI.Inputs;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Abp.Application.Features
 {
@@ -36,6 +38,7 @@ namespace Abp.Application.Features
         /// Parent of this feature, if one exists.
         /// If set, this feature can be enabled only if the parent is enabled.
         /// </summary>
+        [JsonIgnore]
         public Feature Parent { get; private set; }
 
         /// <summary>
@@ -72,6 +75,12 @@ namespace Abp.Application.Features
         /// Feature's scope.
         /// </summary>
         public FeatureScopes Scope { get; set; }
+
+        /// <summary>
+        /// Gets the name of the scope.
+        /// </summary>
+        /// <value>The name of the scope.</value>
+        public string ScopeName => Enum.GetName(typeof(FeatureScopes), Scope);
 
         /// <summary>
         /// List of child features.

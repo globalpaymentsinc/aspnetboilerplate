@@ -21,6 +21,16 @@ namespace Abp.Application.Features
         /// <summary>
         /// This <see cref="Feature"/> can be enabled/disabled per tenant and edition.
         /// </summary>
-        All = 3
+        All = 3,
+
+        /// <summary>
+        /// This Feature<see cref="Feature"/> can be enabled/disabled per District.
+        /// </summary>
+        District = 4,
+
+        /// <summary>
+        /// This Feature<see cref="Feature"/> can be enabled/disabled for the system.
+        /// </summary>
+        System = 5
     }
 }

@@ -1,5 +1,7 @@
 ### Introduction
 
+**Identity Server** changed its license model, so we suggest using [OpenIddict](OpenIddict.md) for new projects.
+
 [Identity Server](http://identityserver.io/) is an open source **OpenID
 Connect** and **OAuth 2.0** framework. It can be used to make your
 application an **authentication / single sign on server**. It can also
@@ -93,7 +95,7 @@ We added **services.AddIdentityServer()** just after
 We have used the IdentityServerConfig class to get identity resources, api
 resources and clients. You can find more information about this class in
 its own
-[documentation](http://docs.identityserver.io/en/latest/quickstarts/1_client_credentials.html).
+[documentation](https://identityserver4.readthedocs.io/en/latest/quickstarts/1_client_credentials.html).
 For the simplest case, it can be a static class like below:
 
     public static class IdentityServerConfig

@@ -13,7 +13,7 @@ namespace Abp.Organizations
     /// <summary>
     /// Performs domain logic for Organization Units.
     /// </summary>
-    public class OrganizationUnitManager : DomainService
+    public class OrganizationUnitManager : DomainService, IOrganizationUnitManager
     {
         protected IRepository<OrganizationUnit, long> OrganizationUnitRepository { get; private set; }
 
@@ -89,7 +89,7 @@ namespace Abp.Organizations
 
         public virtual async Task<OrganizationUnit> GetLastChildOrNullAsync(long? parentId)
         {
-            var query = OrganizationUnitRepository.GetAll()
+            var query = (await OrganizationUnitRepository.GetAllAsync())
                 .Where(ou => ou.ParentId == parentId)
                 .OrderByDescending(ou => ou.Code);
             return await AsyncQueryableExecuter.FirstOrDefaultAsync(query);

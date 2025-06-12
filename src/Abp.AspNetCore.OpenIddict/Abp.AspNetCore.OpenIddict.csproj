@@ -27,7 +27,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="FluentMigrator" Version="7.1.0" />
-        <PackageReference Include="OpenIddict.AspNetCore" Version="6.3.0" />
+        <PackageReference Include="OpenIddict.AspNetCore" Version="6.4.0" />
     </ItemGroup>
     <ItemGroup>
       <PackageReference Update="Fody" Version="6.9.2">

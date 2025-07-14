@@ -6,6 +6,7 @@ using Abp.Modules;
 using Abp.Reflection;
 using AutoMapper;
 using Castle.MicroKernel.Registration;
+using Microsoft.Extensions.Logging;
 
 namespace Abp.AutoMapper;
 
@@ -44,7 +45,8 @@ public class AbpAutoMapperModule : AbpModule
             }
         };
 
-        var config = new MapperConfiguration(configurer);
+        ILoggerFactory logger = IocManager.Resolve<ILoggerFactory>();
+        var config = new MapperConfiguration(configurer, logger);
         IocManager.IocContainer.Register(
             Component.For<IConfigurationProvider>().Instance(config).LifestyleSingleton()
         );

@@ -2,9 +2,9 @@ using System.Threading.Tasks;
 using Abp.Authorization.Users;
 using Abp.Domain.Uow;
 using Abp.Runtime.Security;
-using IdentityServer4.AspNetIdentity;
-using IdentityServer4.Extensions;
-using IdentityServer4.Models;
+using Duende.IdentityServer.AspNetIdentity;
+using Duende.IdentityServer.Extensions;
+using Duende.IdentityServer.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Abp.IdentityServer4vNext;

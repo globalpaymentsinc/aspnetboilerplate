@@ -9,7 +9,7 @@ namespace Abp.MongoDb.Uow
     /// </summary>
     public class UnitOfWorkMongoDatabaseProvider : IMongoDatabaseProvider, ITransientDependency
     {
-        public MongoDatabase Database { get { return ((MongoDbUnitOfWork)_currentUnitOfWork.Current).Database; } }
+        public IMongoDatabase Database { get { return ((MongoDbUnitOfWork)_currentUnitOfWork.Current).Database; } }
 
         private readonly ICurrentUnitOfWorkProvider _currentUnitOfWork;
 

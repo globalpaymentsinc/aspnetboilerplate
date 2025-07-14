@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 
 namespace Abp.MongoDb.Repositories
 {
@@ -28,12 +27,12 @@ namespace Abp.MongoDb.Repositories
     public class MongoDbRepositoryBase<TEntity, TPrimaryKey> : AbpRepositoryBase<TEntity, TPrimaryKey>
         where TEntity : class, IEntity<TPrimaryKey>
     {
-        public virtual MongoDatabase Database
+        public virtual IMongoDatabase Database
         {
             get { return _databaseProvider.Database; }
         }
 
-        public virtual MongoCollection<TEntity> Collection
+        public virtual IMongoCollection<TEntity> Collection
         {
             get
             {
@@ -60,30 +59,28 @@ namespace Abp.MongoDb.Repositories
 
         public override TEntity Get(TPrimaryKey id)
         {
-            var query = MongoDB.Driver.Builders.Query<TEntity>.EQ(e => e.Id, id);
-            var entity = Collection.FindOne(query);
+            var entity = Collection.Find(e => e.Id.Equals(id)).FirstOrDefault();
             if (entity == null)
             {
                 throw new EntityNotFoundException("There is no such an entity with given primary key. Entity type: " + typeof(TEntity).FullName + ", primary key: " + id);
             }
-
             return entity;
         }
-
+    
         public override TEntity FirstOrDefault(TPrimaryKey id)
         {
-            var query = MongoDB.Driver.Builders.Query<TEntity>.EQ(e => e.Id, id);
-            return Collection.FindOne(query);
+            return Collection.Find(e => e.Id.Equals(id)).FirstOrDefault();
         }
 
         public override TEntity Insert(TEntity entity)
         {
-            Collection.Insert(entity);
+            Collection.InsertOne(entity);
             return entity;
         }
+    
         public override TEntity Update(TEntity entity)
         {
-            Collection.Save(entity);
+            Collection.ReplaceOne(e => e.Id.Equals(entity.Id), entity);
             return entity;
         }
 
@@ -94,8 +91,39 @@ namespace Abp.MongoDb.Repositories
 
         public override void Delete(TPrimaryKey id)
         {
-            var query = MongoDB.Driver.Builders.Query<TEntity>.EQ(e => e.Id, id);
-            Collection.Remove(query);
+            Collection.DeleteOne(e => e.Id.Equals(id));
+        }
+
+        public override async Task<TEntity> GetAsync(TPrimaryKey id)
+        {
+            var entity = await Collection.Find(e => e.Id.Equals(id)).FirstOrDefaultAsync();
+            if (entity == null)
+            {
+                throw new EntityNotFoundException("There is no such an entity with given primary key. Entity type: " + typeof(TEntity).FullName + ", primary key: " + id);
+            }
+            return entity;
+        }
+
+        public override async Task<TEntity> FirstOrDefaultAsync(TPrimaryKey id)
+        {
+            return await Collection.Find(e => e.Id.Equals(id)).FirstOrDefaultAsync();
+        }
+
+        public override async Task<TEntity> InsertAsync(TEntity entity)
+        {
+            await Collection.InsertOneAsync(entity);
+            return entity;
+        }
+
+        public override async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            await Collection.ReplaceOneAsync(e => e.Id.Equals(entity.Id), entity);
+            return entity;
+        }
+
+        public override async Task DeleteAsync(TPrimaryKey id)
+        {
+            await Collection.DeleteOneAsync(e => e.Id.Equals(id));
         }
     }
 }

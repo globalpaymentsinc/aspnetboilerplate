@@ -11,6 +11,9 @@
     <Description>Abp.ZeroCore.NHibernate</Description>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Abp.FluentMigrator\Abp.FluentMigrator.csproj" />
     <ProjectReference Include="..\Abp.NHibernate\Abp.NHibernate.csproj" />
     <ProjectReference Include="..\Abp.ZeroCore\Abp.ZeroCore.csproj" />

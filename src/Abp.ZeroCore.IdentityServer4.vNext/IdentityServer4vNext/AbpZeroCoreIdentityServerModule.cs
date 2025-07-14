@@ -2,7 +2,7 @@ using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero;
-using IdentityServer4.Models;
+using Duende.IdentityServer.Models;
 
 namespace Abp.IdentityServer4vNext;
 

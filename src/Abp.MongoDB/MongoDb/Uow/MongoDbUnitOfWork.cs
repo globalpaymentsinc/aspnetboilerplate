@@ -14,7 +14,7 @@ namespace Abp.MongoDb.Uow
         /// <summary>
         /// Gets a reference to MongoDB Database.
         /// </summary>
-        public MongoDatabase Database { get; private set; }
+        public IMongoDatabase Database { get; private set; }
 
         private readonly IAbpMongoDbModuleConfiguration _configuration;
 
@@ -34,15 +34,11 @@ namespace Abp.MongoDb.Uow
             _configuration = configuration;
         }
 
-        #pragma warning disable
         protected override void BeginUow()
         {
-            //TODO: MongoClientExtensions.GetServer(MongoClient)' is obsolete: 'Use the new API instead.
             Database = new MongoClient(_configuration.ConnectionString)
-                .GetServer()
                 .GetDatabase(_configuration.DatabaseName);
         }
-        #pragma warning restore
 
         public override void SaveChanges()
         {

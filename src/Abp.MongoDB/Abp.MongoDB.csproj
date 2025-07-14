@@ -19,13 +19,16 @@
     <RootNamespace>Abp</RootNamespace>
     <Description>Abp.MongoDB</Description>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="3.4.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Abp\Abp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="mongocsharpdriver" Version="2.30.0" />
     <PackageReference Update="ConfigureAwait.Fody" Version="3.3.2" />
   </ItemGroup>
 

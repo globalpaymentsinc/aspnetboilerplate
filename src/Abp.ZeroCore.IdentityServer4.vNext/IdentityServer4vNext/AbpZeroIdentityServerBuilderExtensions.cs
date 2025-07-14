@@ -3,8 +3,8 @@ using System.IdentityModel.Tokens.Jwt;
 using Abp.Authorization.Users;
 using Abp.IdentityServer4vNext;
 using Abp.Runtime.Security;
-using IdentityModel;
-using IdentityServer4.Services;
+using Duende.IdentityModel;
+using Duende.IdentityServer.Services;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 // ReSharper disable once CheckNamespace

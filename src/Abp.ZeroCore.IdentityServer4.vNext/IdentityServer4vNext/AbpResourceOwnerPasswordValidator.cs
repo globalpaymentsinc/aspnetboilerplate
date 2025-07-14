@@ -4,11 +4,10 @@ using System.Threading.Tasks;
 using Abp.Authorization.Users;
 using Abp.Domain.Uow;
 using Abp.Runtime.Security;
-using IdentityModel;
-using IdentityServer4.AspNetIdentity;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using IdentityServer4.Validation;
+using Duende.IdentityModel;
+using Duende.IdentityServer.AspNetIdentity;
+using Duende.IdentityServer.Models;
+using Duende.IdentityServer.Validation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 

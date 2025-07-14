@@ -10,6 +10,6 @@ namespace Abp.MongoDb
         /// <summary>
         /// Gets the <see cref="MongoDatabase"/>.
         /// </summary>
-        MongoDatabase Database { get; }
+        IMongoDatabase Database { get; }
     }
 }

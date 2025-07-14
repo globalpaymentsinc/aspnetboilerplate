@@ -4,10 +4,9 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
-using Abp.Extensions;
 using Abp.Linq.Expressions;
-using IdentityServer4.Models;
-using IdentityServer4.Stores;
+using Duende.IdentityServer.Models;
+using Duende.IdentityServer.Stores;
 
 namespace Abp.IdentityServer4vNext;
 
@@ -84,22 +83,22 @@ public class AbpPersistedGrantStore : AbpServiceBase, IPersistedGrantStore
     {
         var predicate = PredicateBuilder.New<PersistedGrantEntity>();
 
-        if (!filter.SubjectId.IsNullOrWhiteSpace())
+        if (!string.IsNullOrWhiteSpace(filter.SubjectId))
         {
             predicate = predicate.And(x => x.SubjectId == filter.SubjectId);
         }
 
-        if (!filter.SessionId.IsNullOrWhiteSpace())
+        if (!string.IsNullOrWhiteSpace(filter.SessionId))
         {
             predicate = predicate.And(x => x.SessionId == filter.SessionId);
         }
 
-        if (!filter.ClientId.IsNullOrWhiteSpace())
+        if (!string.IsNullOrWhiteSpace(filter.ClientId))
         {
             predicate = predicate.And(x => x.ClientId == filter.ClientId);
         }
 
-        if (!filter.Type.IsNullOrWhiteSpace())
+        if (!string.IsNullOrWhiteSpace(filter.Type))
         {
             predicate = predicate.And(x => x.Type == filter.Type);
         }

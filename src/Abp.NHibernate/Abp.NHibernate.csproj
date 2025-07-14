@@ -27,6 +27,7 @@
   <ItemGroup>
     <PackageReference Include="FluentNHibernate" Version="3.4.1" />
     <PackageReference Include="NHibernate" Version="5.5.2" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Update="ConfigureAwait.Fody" Version="3.3.2" />
   </ItemGroup>
 

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using Abp.Runtime.Security;
-using IdentityServer4.Services;
+using Duende.IdentityServer.Services;
 using Microsoft.Extensions.Logging;
 
 namespace Abp.IdentityServer4vNext;
